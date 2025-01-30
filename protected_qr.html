@@ -29,14 +29,6 @@
     .form-group {
       margin-bottom: 10px; /* Add spacing between elements */
     }
-    .button-container {
-      display: flex;
-      justify-content: center;
-      gap: 10px; /* Space between buttons */
-    }
-    button.hide-button {
-      margin-top: 0; /* Remove extra margin */
-    }
   </style>
 </head>
 <body>
@@ -57,13 +49,9 @@
     </label>
   </div>
 
-  <!-- Button Container -->
-  <div class="button-container">
-    <!-- Submit Button -->
+  <!-- Submit Button -->
+  <div class="form-group">
     <button onclick="checkPassword()">Submit</button>
-
-    <!-- Hide Button -->
-    <button id="hideButton" class="hide-button hidden" onclick="hideContent()">Hide Information</button>
   </div>
 
   <div id="errorMessage" class="error hidden">Incorrect password. Please try again.</div>
@@ -126,20 +114,6 @@
 
       const contentDiv = document.getElementById("content");
       contentDiv.style.display = "block";
-
-      // Show the Hide button
-      const hideButton = document.getElementById("hideButton");
-      hideButton.classList.remove("hidden");
-    }
-
-    function hideContent() {
-      // Hide the content
-      const contentDiv = document.getElementById("content");
-      contentDiv.style.display = "none";
-
-      // Hide the Hide button itself
-      const hideButton = document.getElementById("hideButton");
-      hideButton.classList.add("hidden");
     }
   </script>
 </body>
