@@ -31,10 +31,12 @@
 <body>
   <!-- Logo -->
   <img src="https://raw.githubusercontent.com/moueminah/qr-code-hosting/main/150.png" alt="Logo" class="logo">
-
   <h1>MITC QR Code</h1>
   <p>Please enter the password to view the information:</p>
   <input type="password" id="passwordInput" placeholder="Enter password">
+  <label>
+    <input type="checkbox" id="rememberMe"> Remember me
+  </label>
   <button onclick="checkPassword()">Submit</button>
   <div id="errorMessage" class="error hidden">Incorrect password. Please try again.</div>
   <div id="content">
@@ -48,11 +50,27 @@
   <script>
     const correctPassword = "MITC@2015@"; // Set your password here
 
+    // Check if the password is saved in localStorage
+    window.onload = function () {
+      const savedPassword = localStorage.getItem("savedPassword");
+      if (savedPassword === correctPassword) {
+        showContent(); // Automatically show content if password is saved
+      }
+    };
+
     function checkPassword() {
       const input = document.getElementById("passwordInput").value;
+      const rememberMe = document.getElementById("rememberMe").checked;
       const errorMessage = document.getElementById("errorMessage");
 
       if (input === correctPassword) {
+        if (rememberMe) {
+          // Save the password in localStorage if "Remember Me" is checked
+          localStorage.setItem("savedPassword", input);
+        } else {
+          // Remove the saved password if "Remember Me" is unchecked
+          localStorage.removeItem("savedPassword");
+        }
         showContent();
         errorMessage.classList.add("hidden");
       } else {
