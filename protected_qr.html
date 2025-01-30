@@ -66,14 +66,6 @@
   <script>
     const correctPassword = "MITC@2015@"; // Set your password here
 
-    // Hidden data embedded in the JavaScript
-    const qrData = {
-      barcode: "123456789",
-      product: "Sample Product",
-      sellPrice: "10.99",
-      buyPrice: "5.99"
-    };
-
     // Check if the password is saved in localStorage
     window.onload = function () {
       const savedPassword = localStorage.getItem("savedPassword");
@@ -106,11 +98,11 @@
     }
 
     function showContent() {
-      // Populate the content with the hidden data
-      document.getElementById("barcode").textContent = qrData.barcode;
-      document.getElementById("product").textContent = qrData.product;
-      document.getElementById("sellPrice").textContent = qrData.sellPrice;
-      document.getElementById("buyPrice").textContent = qrData.buyPrice;
+      const params = new URLSearchParams(window.location.search);
+      document.getElementById("barcode").textContent = params.get("barcode") || "N/A";
+      document.getElementById("product").textContent = params.get("product") || "N/A";
+      document.getElementById("sellPrice").textContent = params.get("sellPrice") || "N/A";
+      document.getElementById("buyPrice").textContent = params.get("buyPrice") || "N/A";
 
       const contentDiv = document.getElementById("content");
       contentDiv.style.display = "block";
