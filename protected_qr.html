@@ -29,12 +29,20 @@
     .form-group {
       margin-bottom: 10px; /* Add spacing between elements */
     }
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px; /* Space between buttons */
+    }
+    button.hide-button {
+      margin-top: 0; /* Remove extra margin */
+    }
   </style>
 </head>
 <body>
   <!-- Logo -->
   <img src="https://raw.githubusercontent.com/moueminah/qr-code-hosting/main/150.png" alt="Logo" class="logo">
-  <h1>Protected Content</h1>
+  <h1>MITC QR Code</h1>
   <p>Please enter the password to view the information:</p>
 
   <!-- Password Input -->
@@ -49,9 +57,13 @@
     </label>
   </div>
 
-  <!-- Submit Button -->
-  <div class="form-group">
+  <!-- Button Container -->
+  <div class="button-container">
+    <!-- Submit Button -->
     <button onclick="checkPassword()">Submit</button>
+
+    <!-- Hide Button -->
+    <button id="hideButton" class="hide-button hidden" onclick="hideContent()">Hide Information</button>
   </div>
 
   <div id="errorMessage" class="error hidden">Incorrect password. Please try again.</div>
@@ -65,6 +77,14 @@
 
   <script>
     const correctPassword = "MITC@2015@"; // Set your password here
+
+    // Hidden data embedded in the JavaScript
+    const qrData = {
+      barcode: "123456789",
+      product: "Sample Product",
+      sellPrice: "10.99",
+      buyPrice: "5.99"
+    };
 
     // Check if the password is saved in localStorage
     window.onload = function () {
@@ -98,14 +118,28 @@
     }
 
     function showContent() {
-      const params = new URLSearchParams(window.location.search);
-      document.getElementById("barcode").textContent = params.get("barcode") || "N/A";
-      document.getElementById("product").textContent = params.get("product") || "N/A";
-      document.getElementById("sellPrice").textContent = params.get("sellPrice") || "N/A";
-      document.getElementById("buyPrice").textContent = params.get("buyPrice") || "N/A";
+      // Populate the content with the hidden data
+      document.getElementById("barcode").textContent = qrData.barcode;
+      document.getElementById("product").textContent = qrData.product;
+      document.getElementById("sellPrice").textContent = qrData.sellPrice;
+      document.getElementById("buyPrice").textContent = qrData.buyPrice;
 
       const contentDiv = document.getElementById("content");
       contentDiv.style.display = "block";
+
+      // Show the Hide button
+      const hideButton = document.getElementById("hideButton");
+      hideButton.classList.remove("hidden");
+    }
+
+    function hideContent() {
+      // Hide the content
+      const contentDiv = document.getElementById("content");
+      contentDiv.style.display = "none";
+
+      // Hide the Hide button itself
+      const hideButton = document.getElementById("hideButton");
+      hideButton.classList.add("hidden");
     }
   </script>
 </body>
