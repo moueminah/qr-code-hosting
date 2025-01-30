@@ -53,6 +53,7 @@
     // Check if the password is saved in localStorage
     window.onload = function () {
       const savedPassword = localStorage.getItem("savedPassword");
+      console.log("Saved Password on Load:", savedPassword); // Debugging line
       if (savedPassword === correctPassword) {
         showContent(); // Automatically show content if password is saved
       }
@@ -61,15 +62,17 @@
     function checkPassword() {
       const input = document.getElementById("passwordInput").value;
       const rememberMe = document.getElementById("rememberMe").checked;
+      console.log("Password Entered:", input); // Debugging line
+      console.log("Remember Me Checked:", rememberMe); // Debugging line
       const errorMessage = document.getElementById("errorMessage");
 
       if (input === correctPassword) {
         if (rememberMe) {
-          // Save the password in localStorage if "Remember Me" is checked
           localStorage.setItem("savedPassword", input);
+          console.log("Password saved to localStorage."); // Debugging line
         } else {
-          // Remove the saved password if "Remember Me" is unchecked
           localStorage.removeItem("savedPassword");
+          console.log("Password removed from localStorage."); // Debugging line
         }
         showContent();
         errorMessage.classList.add("hidden");
