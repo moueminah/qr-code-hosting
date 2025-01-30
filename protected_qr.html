@@ -26,6 +26,9 @@
       height: auto;
       margin-bottom: 20px;
     }
+    .form-group {
+      margin-bottom: 10px; /* Add spacing between elements */
+    }
   </style>
 </head>
 <body>
@@ -33,11 +36,24 @@
   <img src="https://raw.githubusercontent.com/moueminah/qr-code-hosting/main/150.png" alt="Logo" class="logo">
   <h1>MITC QR Code</h1>
   <p>Please enter the password to view the information:</p>
-  <input type="password" id="passwordInput" placeholder="Enter password">
-  <label>
-    <input type="checkbox" id="rememberMe"> Remember me
-  </label>
-  <button onclick="checkPassword()">Submit</button>
+
+  <!-- Password Input -->
+  <div class="form-group">
+    <input type="password" id="passwordInput" placeholder="Enter password">
+  </div>
+
+  <!-- Remember Me Checkbox -->
+  <div class="form-group">
+    <label>
+      <input type="checkbox" id="rememberMe"> Remember me
+    </label>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="form-group">
+    <button onclick="checkPassword()">Submit</button>
+  </div>
+
   <div id="errorMessage" class="error hidden">Incorrect password. Please try again.</div>
   <div id="content">
     <h2>QR Code Information</h2>
