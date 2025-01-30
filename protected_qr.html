@@ -73,7 +73,7 @@
     <p><strong>Product:</strong> <span id="product"></span></p>
     <p><strong>Sell Price $:</strong> <span id="sellPrice"></span></p>
     <p><strong>Buy Price L.L:</strong> <span id="buyPrice"></span></p>
-     <p><strong>Stock:</strong> <span id="Stock"></span></p>
+    <p><strong>Stock:</strong> <span id="Stock"></span></p>
   </div>
 
   <script>
@@ -116,7 +116,7 @@
       document.getElementById("product").textContent = params.get("product") || "N/A";
       document.getElementById("sellPrice").textContent = params.get("sellPrice") || "N/A";
       document.getElementById("buyPrice").textContent = params.get("buyPrice") || "N/A";
-       document.getElementById("Stock").textContent = params.get("Stock") || "N/A";
+      document.getElementById("Stock").textContent = params.get("Stock") || "N/A";
 
       const contentDiv = document.getElementById("content");
       contentDiv.style.display = "block";
