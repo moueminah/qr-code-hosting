@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Protected QR Content</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    #content {
+      display: none;
+      margin-top: 20px;
+    }
+    .hidden {
+      display: none;
+    }
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Protected Content</h1>
+  <p>Please enter the password to view the information:</p>
+  <input type="password" id="passwordInput" placeholder="Enter password">
+  <button onclick="checkPassword()">Submit</button>
+  <div id="errorMessage" class="error hidden">Incorrect password. Please try again.</div>
+  <div id="content">
+    <h2>QR Code Information</h2>
+    <p><strong>Barcode:</strong> <span id="barcode"></span></p>
+    <p><strong>Product:</strong> <span id="product"></span></p>
+    <p><strong>Sell Price $:</strong> <span id="sellPrice"></span></p>
+    <p><strong>Buy Price L.L:</strong> <span id="buyPrice"></span></p>
+  </div>
+
+  <script>
+    const correctPassword = "2015"; // Set your password here
+
+    function checkPassword() {
+      const input = document.getElementById("passwordInput").value;
+      const errorMessage = document.getElementById("errorMessage");
+
+      if (input === correctPassword) {
+        showContent();
+        errorMessage.classList.add("hidden");
+      } else {
+        errorMessage.classList.remove("hidden");
+      }
+    }
+
+    function showContent() {
+      const params = new URLSearchParams(window.location.search);
+      document.getElementById("barcode").textContent = params.get("barcode") || "N/A";
+      document.getElementById("product").textContent = params.get("product") || "N/A";
+      document.getElementById("sellPrice").textContent = params.get("sellPrice") || "N/A";
+      document.getElementById("buyPrice").textContent = params.get("buyPrice") || "N/A";
+
+      const contentDiv = document.getElementById("content");
+      contentDiv.style.display = "block";
+    }
+  </script>
+</body>
+</html>
