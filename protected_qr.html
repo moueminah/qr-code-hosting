@@ -1,13 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  // Decrypt the data
-const secretKey = "MITC@2015@"; // Must match the encryption key
-const encryptedData = new URLSearchParams(window.location.search).get("data");
-if (encryptedData) {
-  const decryptedBytes = CryptoJS.AES.decrypt(encryptedData, secretKey);
-  const decryptedData = JSON.parse(decryptedBytes.toString(CryptoJS.enc.Utf8));
-  console.log(decryptedData); // Use this data to populate the page
-}
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
