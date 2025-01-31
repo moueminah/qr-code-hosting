@@ -44,28 +44,23 @@
   <img src="https://raw.githubusercontent.com/moueminah/qr-code-hosting/main/150.png" alt="Logo" class="logo">
   <h1>MITC QR Code</h1>
   <p>Please enter the password to view the information:</p>
-
   <!-- Password Input -->
   <div class="form-group">
     <input type="password" id="passwordInput" placeholder="Enter password">
   </div>
-
   <!-- Remember Me Checkbox -->
   <div class="form-group">
     <label>
       <input type="checkbox" id="rememberMe"> Remember me
     </label>
   </div>
-
   <!-- Button Container -->
   <div class="button-container">
     <!-- Submit Button -->
     <button onclick="checkPassword()">Submit</button>
-
     <!-- Hide Button -->
     <button id="hideButton" class="hide-button hidden" onclick="hideContent()">Hide Information</button>
   </div>
-
   <div id="errorMessage" class="error hidden">Incorrect password. Please try again.</div>
   <div id="content">
     <h2>QR Code Information</h2>
@@ -73,12 +68,10 @@
     <p><strong>Product:</strong> <span id="product"></span></p>
     <p><strong>Sell Price $:</strong> <span id="sellPrice"></span></p>
     <p><strong>Buy Price L.L:</strong> <span id="buyPrice"></span></p>
-    <p><strong>Stock:</strong> <span id="Stock"></span></p>
+    <p><strong>Stock:</strong> <span id="stock"></span></p>
   </div>
-
   <script>
     const correctPassword = "MITC@2015@"; // Set your password here
-
     // Check if the password is saved in localStorage
     window.onload = function () {
       const savedPassword = localStorage.getItem("savedPassword");
@@ -87,14 +80,12 @@
         showContent(); // Automatically show content if password is saved
       }
     };
-
     function checkPassword() {
       const input = document.getElementById("passwordInput").value;
       const rememberMe = document.getElementById("rememberMe").checked;
       console.log("Password Entered:", input); // Debugging line
       console.log("Remember Me Checked:", rememberMe); // Debugging line
       const errorMessage = document.getElementById("errorMessage");
-
       if (input === correctPassword) {
         if (rememberMe) {
           localStorage.setItem("savedPassword", input);
@@ -109,28 +100,23 @@
         errorMessage.classList.remove("hidden");
       }
     }
-
     function showContent() {
       const params = new URLSearchParams(window.location.search);
       document.getElementById("barcode").textContent = params.get("barcode") || "N/A";
       document.getElementById("product").textContent = params.get("product") || "N/A";
       document.getElementById("sellPrice").textContent = params.get("sellPrice") || "N/A";
       document.getElementById("buyPrice").textContent = params.get("buyPrice") || "N/A";
-      document.getElementById("Stock").textContent = params.get("Stock") || "N/A";
-
+      document.getElementById("stock").textContent = params.get("stock") || "N/A"; // Use lowercase "stock"
       const contentDiv = document.getElementById("content");
       contentDiv.style.display = "block";
-
       // Show the Hide button
       const hideButton = document.getElementById("hideButton");
       hideButton.classList.remove("hidden");
     }
-
     function hideContent() {
       // Hide the content
       const contentDiv = document.getElementById("content");
       contentDiv.style.display = "none";
-
       // Hide the Hide button itself
       const hideButton = document.getElementById("hideButton");
       hideButton.classList.add("hidden");
